@@ -2,20 +2,6 @@ provider "aws" {
   region = var.region
 }
 
-
-module "tags" {
-  source  = "sourcefuse/arc-tags/aws"
-  version = "1.2.3"
-
-  environment = var.environment
-  project     = var.namespace
-
-  extra_tags = {
-    MonoRepo     = "True"
-    MonoRepoPath = "terraform/kms"
-  }
-}
-
 resource "aws_kms_key" "default" {
   count                    = var.enabled ? 1 : 0
   deletion_window_in_days  = var.deletion_window_in_days
@@ -30,6 +16,6 @@ resource "aws_kms_key" "default" {
 
 resource "aws_kms_alias" "default" {
   count         = var.enabled ? 1 : 0
-  name          = coalesce(var.alias, format("alias/%v", module.tags.tags))
+  name          = coalesce(var.alias, format("alias/%v", var.tags))
   target_key_id = join("", aws_kms_key.default[*].id)
 }
