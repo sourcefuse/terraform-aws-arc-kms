@@ -12,6 +12,6 @@ resource "aws_kms_key" "default" {
 
 resource "aws_kms_alias" "default" {
   count         = var.enabled ? 1 : 0
-  name          = coalesce(var.alias, format("alias/%v", var.tags))
+  name          = coalesce(var.alias, format("%q", jsonencode(var.tags)))
   target_key_id = join("", aws_kms_key.default[*].id)
 }

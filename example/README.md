@@ -33,7 +33,7 @@ No resources.
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Name of the environment resources will belong to. | `string` | `"poc"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace for the resources. | `string` | `"arc"` | no |
-| <a name="input_policy"></a> [policy](#input\_policy) | A valid KMS policy JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of the policy. | `string` | `""` | no |
+| <a name="input_policy"></a> [policy](#input\_policy) | A valid KMS policy JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of the policy. | `string` | `"{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowKeyOperations\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": [\n        \"kms:Encrypt\",\n        \"kms:Decrypt\",\n        \"kms:ReEncrypt*\",\n        \"kms:GenerateDataKey*\",\n        \"kms:DescribeKey\"\n      ],\n      \"Resource\": \"*\"\n    }\n  ]\n}\n"` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"us-east-1"` | no |
 
 ## Outputs
