@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_kms_key" "default" {
   count                    = var.enabled ? 1 : 0
   deletion_window_in_days  = var.deletion_window_in_days

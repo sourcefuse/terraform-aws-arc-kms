@@ -12,13 +12,12 @@ variable "enable_key_rotation" {
 
 variable "description" {
   type        = string
-  default     = "Parameter Store KMS master key"
+  default     = "KMS master key"
   description = "The description of the key as viewed in AWS console"
 }
 
 variable "alias" {
   type        = string
-  default     = "alias/eks-kms-key"
   description = "The display name of the alias. The name must start with the word `alias` followed by a forward slash. If not specified, the alias name will be auto-generated."
 }
 
@@ -56,10 +55,4 @@ variable "enabled" {
   type        = bool
   default     = true
   description = "Set to false to prevent the module from creating any resources"
-}
-
-variable "region" {
-  type        = string
-  default     = "us-east-1"
-  description = "AWS region"
 }
