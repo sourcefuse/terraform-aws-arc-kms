@@ -30,7 +30,8 @@ module "tags" {
 
 
 module "kms" {
-  source                  = "../" # Use the local path to your kms-module directory
+  source                  = "sourcefuse/arc-kms/aws"
+  version                 = "0.0.1"
   enabled                 = var.enabled
   deletion_window_in_days = var.deletion_window_in_days
   enable_key_rotation     = var.enable_key_rotation
