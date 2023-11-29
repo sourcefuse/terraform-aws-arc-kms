@@ -13,7 +13,7 @@ provider "aws" {
   region = var.region
 }
 
-
+data "aws_caller_identity" "current" {}
 
 module "tags" {
   source  = "sourcefuse/arc-tags/aws"
@@ -37,5 +37,5 @@ module "kms" {
   enable_key_rotation     = var.enable_key_rotation
   alias                   = var.alias
   tags                    = module.tags.tags
-  policy                  = var.policy
+  policy                  = local.kms_policy
 }
