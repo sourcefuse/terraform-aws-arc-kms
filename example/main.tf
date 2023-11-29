@@ -31,7 +31,7 @@ module "tags" {
 
 module "kms" {
   source                  = "sourcefuse/arc-kms/aws"
-  version                 = "0.0.1"
+  version                 = "0.0.1" // use the latest version from registry.
   enabled                 = var.enabled
   deletion_window_in_days = var.deletion_window_in_days
   enable_key_rotation     = var.enable_key_rotation
