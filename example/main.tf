@@ -1,10 +1,10 @@
 terraform {
-  required_version = "~> 1.5"
+  required_version = "~> 1.4"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "~> 4.0"
     }
   }
 }
@@ -31,7 +31,7 @@ module "tags" {
 
 module "kms" {
   source                  = "sourcefuse/arc-kms/aws"
-  version                 = "0.0.1" // use the latest version from registry.
+  version                 = "0.0.3" // use the latest version from registry.
   enabled                 = var.enabled
   deletion_window_in_days = var.deletion_window_in_days
   enable_key_rotation     = var.enable_key_rotation
