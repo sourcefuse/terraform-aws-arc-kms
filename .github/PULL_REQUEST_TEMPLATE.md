@@ -1,5 +1,3 @@
-# Pull Request
-
 ## Description
 
 Please provide a brief description of the changes introduced by this pull request.
