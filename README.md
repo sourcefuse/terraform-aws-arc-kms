@@ -1,5 +1,7 @@
 # [terraform-aws-arc-kms](https://github.com/sourcefuse/terraform-aws-arc-kms)
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=sourcefuse_terraform-aws-arc-kms)](https://sonarcloud.io/summary/new_code?id=sourcefuse_terraform-aws-arc-kms)
+
 [![snyk](https://github.com/sourcefuse/terraform-aws-arc-kms/actions/workflows/snyk.yaml/badge.svg)](https://github.com/sourcefuse/terraform-aws-arc-kms/actions/workflows/snyk.yaml)
 
 ## Overview
