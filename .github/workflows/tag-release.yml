@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Bump version and push tag
+        id: tag
         uses: anothrNick/github-tag-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
