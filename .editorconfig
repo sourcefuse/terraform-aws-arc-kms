@@ -15,7 +15,7 @@ max_line_length = 80
 trim_trailing_whitespace = true
 
 [*.{yaml,yml}]
-max_line_length = 120
+max_line_length = 180
 
 [*.{tf,tfvars}]
 indent_size = 2

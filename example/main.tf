@@ -1,4 +1,4 @@
-# data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {}
 module "tags" {
   source  = "sourcefuse/arc-tags/aws"
   version = "1.2.3"
