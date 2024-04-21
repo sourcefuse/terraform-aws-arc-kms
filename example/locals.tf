@@ -15,13 +15,13 @@ locals {
         ],
         Resource = "*",
       },
-      # {
-      #   Sid       = "AllowKeyOwnerToUpdate",
-      #   Effect    = "Allow",
-      #   Principal = { AWS = data.aws_caller_identity.current.account_id },  // if required then use it
-      #   Action    = "kms:*",
-      #   Resource  = "*",
-      # },
+      {
+        Sid       = "AllowKeyOwnerToUpdate",
+        Effect    = "Allow",
+        Principal = { AWS = data.aws_caller_identity.current.account_id }, // if required then use it
+        Action    = "kms:*",
+        Resource  = "*",
+      },
     ],
   })
 }
