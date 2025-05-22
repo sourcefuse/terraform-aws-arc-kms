@@ -16,11 +16,6 @@ variable "alias" {
   description = "The display name of the alias. The name must start with the word `alias` followed by a forward slash. If not specified, the alias name will be auto-generated."
 }
 
-variable "enabled" {
-  type        = bool
-  default     = true
-  description = "Set to false to prevent the module from creating any resources"
-}
 
 ################################################################################
 ## shared
