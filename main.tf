@@ -12,4 +12,5 @@ resource "aws_kms_key" "default" {
 resource "aws_kms_alias" "default" {
   name          = var.alias
   target_key_id = aws_kms_key.default.id
+
 }
