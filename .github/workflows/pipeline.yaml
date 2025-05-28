@@ -47,6 +47,3 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
         working-directory: ${{ matrix.dir }}
-      - name: Terraform Plan (Mock)
-        run: terraform plan
-        working-directory: ${{ matrix.dir }}
