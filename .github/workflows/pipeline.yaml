@@ -9,6 +9,13 @@ on:    # yamllint disable-line rule:truthy
   release:
     types: [published]
 
+env:
+  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: localstack
+  AWS_SECRET_ACCESS_KEY: localstack
+  AWS_DEFAULT_REGION: us-east-1
+  AWS_ENDPOINT_URL: http://localhost:4566
+
 jobs:
   check-format:
     runs-on: ubuntu-latest
@@ -16,13 +23,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Configure AWS credentials via OIDC
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ secrets.ARC_IAC_TERRATEST_ROLE }}
-          aws-region: us-east-1
-
       - name: Terraform Format Check
         run: terraform fmt -check -recursive -diff
 
@@ -30,9 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     container: hashicorp/terraform
     strategy:
-      matrix: {
+      matrix:
         dir: ['example']
-      }
     services:
       localstack:
         image: localstack/localstack
@@ -44,20 +43,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials via OIDC
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ secrets.ARC_IAC_TERRATEST_ROLE }}
-          aws-region: us-east-1
-
       - name: Terraform Init
         run: terraform init -upgrade
         working-directory: ${{ matrix.dir }}
+        env:
+          AWS_ACCESS_KEY_ID: localstack
+          AWS_SECRET_ACCESS_KEY: localstack
+          AWS_REGION: us-east-1
+          AWS_ENDPOINT_URL: http://localhost:4566
 
       - name: Terraform Validate
         run: terraform validate
         working-directory: ${{ matrix.dir }}
+        env:
+          AWS_ACCESS_KEY_ID: localstack
+          AWS_SECRET_ACCESS_KEY: localstack
+          AWS_REGION: us-east-1
+          AWS_ENDPOINT_URL: http://localhost:4566
 
       - name: Terraform Plan (Mock)
         run: terraform plan
         working-directory: ${{ matrix.dir }}
+        env:
+          AWS_ACCESS_KEY_ID: localstack
+          AWS_SECRET_ACCESS_KEY: localstack
+          AWS_REGION: us-east-1
+          AWS_ENDPOINT_URL: http://localhost:4566
