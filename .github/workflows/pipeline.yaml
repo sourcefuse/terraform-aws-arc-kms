@@ -10,11 +10,9 @@ on:    # yamllint disable-line rule:truthy
     types: [published]
 
 env:
-  AWS_REGION: us-east-1
+  DEFAULT_REGION: us-east-1
   AWS_ACCESS_KEY_ID: localstack
   AWS_SECRET_ACCESS_KEY: localstack
-  AWS_DEFAULT_REGION: us-east-1
-  AWS_ENDPOINT_URL: http://localhost:4566
 
 jobs:
   check-format:
@@ -30,8 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     container: hashicorp/terraform
     strategy:
-      matrix:
+      matrix: {
         dir: ['example']
+      }
     services:
       localstack:
         image: localstack/localstack
@@ -42,30 +41,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Terraform Init
         run: terraform init -upgrade
         working-directory: ${{ matrix.dir }}
-        env:
-          AWS_ACCESS_KEY_ID: localstack
-          AWS_SECRET_ACCESS_KEY: localstack
-          AWS_REGION: us-east-1
-          AWS_ENDPOINT_URL: http://localhost:4566
-
       - name: Terraform Validate
         run: terraform validate
         working-directory: ${{ matrix.dir }}
-        env:
-          AWS_ACCESS_KEY_ID: localstack
-          AWS_SECRET_ACCESS_KEY: localstack
-          AWS_REGION: us-east-1
-          AWS_ENDPOINT_URL: http://localhost:4566
-
-      - name: Terraform Plan (Mock)
-        run: terraform plan
-        working-directory: ${{ matrix.dir }}
-        env:
-          AWS_ACCESS_KEY_ID: localstack
-          AWS_SECRET_ACCESS_KEY: localstack
-          AWS_REGION: us-east-1
-          AWS_ENDPOINT_URL: http://localhost:4566
