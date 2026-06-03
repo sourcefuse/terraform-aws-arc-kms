@@ -33,7 +33,7 @@ jobs:
       }
     services:
       localstack:
-        image: localstack/localstack
+        image: localstack/localstack:3.8
         env:
           SERVICES: apigateway,cloudformation,cloudwatch,dynamodb,es,firehose,iam,kinesis,lambda,route53,redshift,s3,secretsmanager,ses,sns,sqs,ssm,stepfunctions,sts,kms
         ports:
